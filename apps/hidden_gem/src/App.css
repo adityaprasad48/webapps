@@ -1,0 +1,117 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+.reply_btn {
+  border: none;
+  background: none;
+  color: blueviolet;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.comment_reply {
+  padding: 4px;
+  border-bottom: 1px solid gray;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+}
+
+.post_comment {
+  margin-block: 10px;
+}
+
+.post_comment textarea {
+  padding: 4px;
+  width: 100%;
+}
+
+.post_comment button {
+  margin-left: auto;
+  background-color: green;
+  color: white;
+  padding: 5px 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.star_wrap {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.items {
+  height: 500px;
+  overflow: auto;
+  max-width: 400px;
+  border: 2px solid gray;
+}
+
+.item {
+  width: 100%;
+  padding-block: 15px;
+  padding-inline: 10px;
+  border: 1px solid;
+  margin-bottom: 10px;
+}
+
+.grid-container {
+  display: grid;
+  width: 100px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 10px;
+}
+
+.grid-item {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.grid {
+  width: 600px;
+  height: 600px;
+  position: relative;
+  
+}
+
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 5 equal-sized columns */
+  width: 600px;
+  height: 60px;
+}
+
+.grid-cell {
+  border: 1px solid black;
+  background-color: lightgray;
+  box-sizing: border-box;
+}
+
+.red_goti {
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.red_goti:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}

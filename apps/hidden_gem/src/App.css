@@ -79,25 +79,28 @@
   border: 1px solid black;
 }
 
-.grid {
+.grid_wrap {
   width: 600px;
   height: 600px;
   position: relative;
   
 }
 
-
-.grid-row {
+.grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr); /* 5 equal-sized columns */
   width: 600px;
-  height: 60px;
+  height: 600px;
 }
 
 .grid-cell {
-  border: 1px solid black;
-  background-color: lightgray;
+  border: 0.5px solid gray;
+  cursor: pointer;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .red_goti {
@@ -114,4 +117,17 @@
 
 .red_goti:hover {
   transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* create a class spin for 1 sec  */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.spin {
+  animation: spin 1s linear infinite;
 }

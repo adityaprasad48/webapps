@@ -1,25 +1,16 @@
+import { RotateCcw } from "lucide-react";
 import { use, useEffect, useState } from "react";
 
 export default function SaapSidhi() {
-
   const boxSize = 60;
   const startLeft = boxSize / 2;
   const startTop = boxSize / 2;
 
-  const ten_cross_ten = Array.from({length: 10}, () => Array.from({length: 10}, () => null));
-  
   const [redGotiPos, setRedGotiPos] = useState(0);
   const [redGotiTop, setRedGotiTop] = useState(startTop);
   const [redGotiLeft, setRedGotiLeft] = useState(startLeft);
 
- useEffect(() => {
-  // set the top and left position of the red goti
-  // 10 cross 10 grid, each cell is 80px
-  // if redGotiPos is 0, set top and left to 0
-  // if redGotiPos is 10, set top to 0 and left to 80
-  // if redGotiPos is 20, set top to 0 and left to 160
-  // if redGotiPos is 30, set top to 80 and left to 0
-
+  useEffect(() => {
     if (redGotiPos >= 0 && redGotiPos <= 99) {
       const row = Math.floor(redGotiPos / 10);
       const col = redGotiPos % 10;
@@ -29,18 +20,17 @@ export default function SaapSidhi() {
       setRedGotiTop(startTop);
       setRedGotiLeft(startLeft);
     }
+  }, [redGotiPos]);
 
- }, [redGotiPos]);
-
- const snakes = [
-  { start: 16, end: 6 },
-  { start: 47, end: 26 },
-  { start: 49, end: 11 },
-  { start: 56, end: 53 },
-  { start: 62, end: 19 },
-  { start: 64, end: 60 },
-  { start: 87, end: 24 },
- ]
+  const snakes = [
+    { start: 16, end: 6, bg: "bg-red-500", head: "#", tail: "%" },
+    { start: 47, end: 26, bg: "bg-orange-500", head: "#", tail: "%" },
+    { start: 49, end: 11, bg: "bg-gray-500", head: "#", tail: "%" },
+    { start: 56, end: 53, bg: "bg-green-500", head: "#", tail: "%" },
+    { start: 62, end: 19, bg: "bg-purple-500", head: "#", tail: "%" },
+    { start: 64, end: 60, bg: "bg-pink-500", head: "#", tail: "%" },
+    { start: 87, end: 24, bg: "bg-stone-500", head: "#", tail: "%" },
+  ];
 
   const ladders = [
     { start: 1, end: 38 },
@@ -50,49 +40,122 @@ export default function SaapSidhi() {
     { start: 28, end: 84 },
     { start: 36, end: 44 },
     { start: 51, end: 67 },
-  ]
+  ];
 
   const getBoxTypeCls = () => {
-    if(redGotiPos === 0) {
-      return 'red-goti';
-    } else if(redGotiPos === 99) {
-      return 'green-goti';
+    if (redGotiPos === 0) {
+      return "red-goti";
+    } else if (redGotiPos === 99) {
+      return "green-goti";
     } else {
-      return 'blue-goti';
+      return "blue-goti";
     }
-  }
- 
+  };
 
-  const handleCellClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
-    const pos = parseInt(target.dataset.pos || "0");
-      setRedGotiPos((prev) => {
-        if(prev === 99) {
-          return 0;
-        } else {
-          return prev + 1;
+  // when click on RotateCcw icon it should rotate for 1 second and set the redGotiPos to 0
+  const [isRotating, setIsRotating] = useState(false);
+  const [diceVal, setDiceVal] = useState(0);
+
+  const [diceDisable, setDiceDisable] = useState(false);
+
+  const handleDiceClick = () => {
+    if (diceDisable) {
+      return;
+    }
+    setIsRotating(true);
+    setTimeout(() => {
+      setIsRotating(false);
+      setDiceDisable(true);
+      const diceNum = Math.floor(Math.random() * 6) + 1;
+      setDiceVal(diceNum);
+      let steps = diceNum;
+      const interval = setInterval(() => {
+        setRedGotiPos((prev) => {
+          if (prev + 1 > 99) {
+            return 99;
+          } else {
+            return prev + 1;
+          }
+        });
+        steps--;
+        if (steps <= 0) {
+          clearInterval(interval);
+          if (diceNum === 6) {
+            alert("You got another chance to roll the dice");
+          }
+          // disable the dice click while moving the red goti
+          setDiceDisable(false);
         }
-      });
-      console.log('boxPos', pos);
-  }
+      }, 500);
+    }, 1000);
+  };
+  // when click on dice_num it should rotate for 1 second and set the redGotiPos to 0
 
-
-  return <div>
-    <h1>Saap Sidhi</h1>
-    <div className="grid">
-      {ten_cross_ten.map((row, rowIndex) => (
-        <div key={rowIndex} className="grid-row">
-          {row.map((cell, cellIndex) => (
-            <div key={cellIndex} className="grid-cell" data-pos={`${rowIndex * 10 + cellIndex}`} onClick={handleCellClick}>
-              {cell}
-            </div>
-          ))}
+  return (
+    <div>
+      <div className="dice_wrapper w-[400px] h-[200px] flex justify-center items-center gap-4">
+        <div
+          onClick={handleDiceClick}
+          className={`dice  size-40 text-8xl bg-green-300 text-white flex justify-center items-center cursor-pointer ${
+            diceDisable ? "cursor-not-allowed bg-red-300" : ""
+          }`}
+        >
+          <RotateCcw
+            className={isRotating ? "spin" : ""}
+            width={80}
+            height={80}
+          />
         </div>
-      ))}
-      <div className={`red_goti ${getBoxTypeCls()}`} style={{top: redGotiTop, left: redGotiLeft}}></div>
+        <div className="dice_num border border-1 size-40 text-8xl bg-green-300 text-white flex justify-center items-center cursor-pointer">
+          <span className="dice_num_val">{diceVal ? diceVal : "?"}</span>
+        </div>
+      </div>
+      <div className="grid_wrap">
+        <div className="grid">
+          {Array(100)
+            .fill(0)
+            .map((cell, cellIndex) => (
+              <div
+                key={cellIndex}
+                className={`grid-cell ${
+                  Math.floor(cellIndex / 10) % 2 === 0
+                    ? cellIndex % 2 === 0
+                      ? "bg-yellow-400"
+                      : "bg-green-400"
+                    : cellIndex % 2 === 0
+                      ? "bg-green-400"
+                      : "bg-yellow-400"
+                }`}
+                data-pos={cellIndex}
+              >
+                <span>{cellIndex}</span>
+                {snakes.map((snake) => {
+                  if (cellIndex === snake.start) {
+                    return (
+                      <div key={snake.start} className={`snake ${snake.bg}`}>
+                        {snake.head}
+                      </div>
+                    );
+                  }
+                  if (cellIndex === snake.end) {
+                    return (
+                      <div key={snake.end} className={`snake ${snake.bg}`}>
+                        {snake.tail}
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            ))}
+          <div
+            className={`red_goti ${getBoxTypeCls()}`}
+            style={{ top: redGotiTop, left: redGotiLeft }}
+          ></div>
+        </div>
+        <div style={{top: '30px', left: (360 + 30) + 'px', opacity: 0.6, }} className={`absolute dummy-snake h-[100px] w-[20px] bg-red-600`}></div>
+
+      </div>
     </div>
-   
-  </div>
-
-
+  );
 }

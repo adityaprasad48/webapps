@@ -8,6 +8,7 @@ import Observer from './pages/Observer'
 import ThinkGrid from './pages/ThinkGrid'
 import SaapSidhi from './pages/SaapSidhi'
 import { RaceCondition } from './pages/RaceCondition'
+import QueryExpo from './pages/QueryExpo'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/grid" element={<ThinkGrid />} />
         <Route path="/saap_sidhi" element={<SaapSidhi />} />
         <Route path="/race" element={<RaceCondition />} />
+        <Route path="/query_expo" element={<QueryExpo />} />
         <Route path="*" element={<NotFound />} /> {/* 404 Page */}
      </Routes>
   )

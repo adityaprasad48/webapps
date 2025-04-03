@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button } from '@/components/ui/button';
 import UsersList from '@/Users';
 import { decrement, increment, incrementByAmount, toggleTheme } from '@/store';
+import Hello from '@/comp/Hello/Hello';
 
 
 // 1️⃣ Define State & Actions → createSlice()
@@ -75,6 +76,7 @@ function Home() {
       <button onClick={() => dispatch(toggleTheme())}>
         Toggle Theme
       </button>
+      {/* <Hello name="John" /> */}
       <Button variant="destructive">Hello</Button>
       <UsersList />
       <Comments/>

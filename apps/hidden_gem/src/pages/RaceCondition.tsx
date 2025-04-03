@@ -27,6 +27,7 @@ export function RaceCondition() {
         const data = await response.json();
         setProducts(data);
         setProductNames(data.map((product: ProductType) => product.title));
+        console.log('data', data);
       } catch (err) {
         setError(err as Error);
       } finally {

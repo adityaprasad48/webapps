@@ -7,9 +7,11 @@ import NotFound from './pages/NotFound'
 import Observer from './pages/Observer'
 import ThinkGrid from './pages/ThinkGrid'
 import SaapSidhi from './pages/SaapSidhi'
+import { RaceCondition } from './pages/RaceCondition'
 
 
 function App() {
+  
   return (
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,6 +20,7 @@ function App() {
         <Route path="/observer" element={<Observer />} />
         <Route path="/grid" element={<ThinkGrid />} />
         <Route path="/saap_sidhi" element={<SaapSidhi />} />
+        <Route path="/race" element={<RaceCondition />} />
         <Route path="*" element={<NotFound />} /> {/* 404 Page */}
      </Routes>
   )

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import UsersList from '@/Users';
 import { decrement, increment, incrementByAmount, toggleTheme } from '@/store';
 import Hello from '@/comp/Hello/Hello';
+import Riddle from '@/comp/Riddle';
 
 
 // 1️⃣ Define State & Actions → createSlice()
@@ -80,6 +81,8 @@ function Home() {
       <Button variant="destructive">Hello</Button>
       <UsersList />
       <Comments/>
+
+      <Riddle/>
      
     </div>
   )

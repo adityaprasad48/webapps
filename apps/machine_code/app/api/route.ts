@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-
 const data = [
   { id: 1, name: 'Product 1' },
   { id: 2, name: 'Product 2' },
@@ -12,7 +11,6 @@ const data = [
   { id: 8, name: 'Product 8' },
   { id: 9, name: 'Product 9' },
   { id: 10, name: 'Product 10' },
-  // add 10 more products
   { id: 11, name: 'Product 11' },
   { id: 12, name: 'Product 12' },
   { id: 13, name: 'Product 13' },
@@ -25,12 +23,6 @@ const data = [
   { id: 20, name: 'Product 20' },
 
 ]
-// http://localhost:3000/observer/api : get all products
-// http://localhost:3000/observer/api?id=1 : get product with id 1
-// http://localhost:3000/observer/api?offset=0&limit=5 : get first 5 products
-// http://localhost:3000/observer/api?offset=5&limit=5 : get next 5 products
-
-
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);

@@ -17,6 +17,7 @@ export const EveryDay = () => {
         <li>Forget About past start new journey</li> 
         <li>Write down Feature you built in every year at least 3 Big</li>
         <li>Write down what you learn today</li>
+        <span>Last Updated 27 Jan</span>
       </ol>
   )
 }

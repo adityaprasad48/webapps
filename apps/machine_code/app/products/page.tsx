@@ -2,7 +2,7 @@
 
 import { useEffect,useState } from 'react'
 import styles from "./randomproduct.module.css";
-import CursorFollow from '@/components/CursorFollow';
+import CursorFollow from '../../components/CursorFollow';
 
 
 export default function RandomProduct() {

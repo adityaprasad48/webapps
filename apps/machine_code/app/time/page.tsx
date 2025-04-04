@@ -47,7 +47,6 @@ export default function Time() {
   let a = 'bg-red-100 bg-red-200 bg-red-300 bg-red-400 bg-red-500 bg-red-600 bg-red-700 bg-red-800 bg-red-900';
   console.log(a)
 
-
   return (
     <div className="flex items-center justify-center">
       <div className="relative my-10 bg-gray-200 flex flex-wrap w-[600px] h-[600px] justify-center">

@@ -1,17 +1,23 @@
 "use client";
 
-import { Copy } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const OTPInput = () => {
   const [createdOtp, setCreatedOtp] = useState("");
   const [otp, setOtp] = useState(["", "", "", ""]);
+  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const value = e.target.value;
+    let value = e.target.value;
+
+    if (isNaN(Number(value))) {
+      return;
+    }
+    value = value.trim();
+
     if (value.length <= 1) {
       const newOtp = [...otp];
       newOtp[index] = value;
@@ -79,6 +85,9 @@ const OTPInput = () => {
         {otp.map((digit, index) => (
           <input
             key={index}
+            ref={(el) => {
+              otpRefs.current[index] = el;
+            }}
             id={`otp-input-${index}`}
             type="text"
             maxLength={1}

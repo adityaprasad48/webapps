@@ -1,27 +1,41 @@
+import { twMerge } from "tailwind-merge";
 import CountryDropDown from "../components/mcode/CountriesDropDown";
-import InfiniteScroller from "../components/mcode/InfiniteScroller";
-import Modal from "../components/mcode/modal/Modal";
+import FEPagination from "../components/mcode/FEPagination";
 import SampleModal from "../components/mcode/modal/SampleModal";
+import Comments from "../components/mcode/NestedComment";
 import OTPInput from "../components/mcode/OTPInput";
-import Rating from "../components/mcode/StarRating";
+import StarRating from "../components/mcode/StarRating";
+import UserList from "../components/mcode/UserList";
 import Payment from "../components/Payment";
-
-const Grid = ({ children }) => {
-  return (
-    <div className="h-[400px] w-full flex items-center justify-center gap-4 p-4 border border-bottom-1 border-gray-300">
-      {children}
-    </div>
-  );
-};
-
 import { ReactNode } from "react";
 
-Grid.Item = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className="flex items-center justify-center  border-gray-300 p-2">
-      {children}
-    </div>
+const Grid = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) => {
+  const defaultCls =
+    "h-[400px] w-full flex items-center justify-center gap-4 p-4 border border-b border-gray-300";
+
+  const classNames = twMerge(defaultCls, className);
+
+  return <div className={classNames}>{children}</div>;
+};
+
+Grid.Item = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) => {
+  const classNames = twMerge(
+    "w-full h-full flex items-center justify-center  border-gray-300 p-2 border-1",
+    className
   );
+  return <div className={classNames}>{children}</div>;
 };
 
 Grid.Item.displayName = "Grid.Item";
@@ -49,10 +63,19 @@ export default function Home() {
 
       <Grid>
         <Grid.Item>
-          <InfiniteScroller />
+          <UserList />
         </Grid.Item>
         <Grid.Item>
-          <Rating />
+          <StarRating />
+        </Grid.Item>
+      </Grid>
+
+      <Grid className="h-[700px]">
+        <Grid.Item>
+          <Comments />
+        </Grid.Item>
+        <Grid.Item>
+          <FEPagination />
         </Grid.Item>
       </Grid>
     </div>

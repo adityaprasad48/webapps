@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 
-export default function Rating() {
+export default function StarRating() {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -28,7 +28,7 @@ export default function Rating() {
           onMouseOver={() => handleMouseOver(index)}
         />
       ))}
-      <p>Selected Rating: {selectedRating !== null ? selectedRating + 1 : "None"}</p>
+      <p>Selected Rating: {selectedRating !== null ? selectedRating + 1 : "0"}</p>
     </div>
   );
 }

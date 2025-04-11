@@ -8,6 +8,7 @@ import StarRating from "../components/mcode/StarRating";
 import UserList from "../components/mcode/UserList";
 import Payment from "../components/Payment";
 import { ReactNode } from "react";
+import FormTab from "../components/mcode/tabs/FormTab";
 
 const Grid = ({
   className,
@@ -43,6 +44,12 @@ Grid.Item.displayName = "Grid.Item";
 export default function Home() {
   return (
     <div className="flex flex-col gap-10 min-h-screen">
+      <Grid>
+        <Grid.Item>
+          <FormTab />
+        </Grid.Item>
+      </Grid>
+
       <Grid>
         <Grid.Item>
           <OTPInput />

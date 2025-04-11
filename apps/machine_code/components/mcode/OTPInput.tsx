@@ -1,9 +1,25 @@
 "use client";
 
+import { Copy, Newspaper } from "lucide-react";
 import { useState, useRef } from "react";
 
+const genrateOtp = (length: number) => {
+  let result = "";
+  const characters = "123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    const randomChar = characters.charAt(
+      Math.floor(Math.random() * charactersLength)
+    );
+    console.log("randomChar", randomChar);
+    result += randomChar;
+  }
+  return result;
+};
+
+
 const OTPInput = () => {
-  const [createdOtp, setCreatedOtp] = useState("");
+  const [createdOtp, setCreatedOtp] = useState(genrateOtp(4));
   const [otp, setOtp] = useState(["", "", "", ""]);
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -59,20 +75,7 @@ const OTPInput = () => {
     console.log("OTP Submitted:", otp.join(""));
   };
 
-  const genrateOtp = (length: number) => {
-    let result = "";
-    const characters = "123456789";
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      const randomChar = characters.charAt(
-        Math.floor(Math.random() * charactersLength)
-      );
-      console.log("randomChar", randomChar);
-      result += randomChar;
-    }
-    return result;
-  };
-
+  
   const handleCopy = () => {
     navigator.clipboard.writeText(createdOtp).then(() => {
       console.log("OTP copied to clipboard", createdOtp);
@@ -95,33 +98,34 @@ const OTPInput = () => {
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={(e) => handlePaste(e, index)}
-            className="w-10 h-10 text-center border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-10 h-10 text-center border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         ))}
       </div>
       <button
         id="otp_submit"
         type="submit"
-        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="mt-4 bg-purple-600 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        Submit OTP
+        Submit
       </button>
 
       <p className="mt-2 text-sm text-gray-500">Entered OTP: {otp.join("")}</p>
 
-      <div className="flex justify-center items-center mt-4">
-        <p className="text-2xl text-green-500">{createdOtp}</p>
+      <div className="flex justify-center items-center gap-2 mt-4">
         <button
           onClick={() => setCreatedOtp(genrateOtp(4))}
-          className="ml-4 bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="ml-4 bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
+          <Newspaper className="inline-block mr-2" />
           Generate OTP
         </button>
+        <p className="text-2xl text-green-500">{createdOtp}</p>
         <button
           onClick={handleCopy}
-          className="ml-4 bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="ml-4 bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
-          Copy OTP
+          <Copy height={25} width={30}/>
         </button>
       </div>
     </form>

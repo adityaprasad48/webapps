@@ -13,18 +13,29 @@ const FormTab = () => {
     interest_email: "",
     country: "",
     push_notifications: "0",
+    by_email: ["comments"],
   });
 
   console.log({ values });
 
   const [errors, setErrors] = useState({});
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(1);
 
   const handleChange = (e: any) => {
     setValues((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleCheckboxChange = (e: any) => {
+    console.log("change");
+    setValues((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.checked
+        ? [...prev.by_email, e.target.value]
+        : prev.by_email.filter((item) => item != e.target.value),
     }));
   };
 
@@ -120,7 +131,12 @@ const FormTab = () => {
           </button>
         ))}
       </div>
-      <FormComp values={values} handleChange={handleChange} errors={errors} />
+      <FormComp
+        values={values}
+        handleChange={handleChange}
+        errors={errors}
+        handleCheckboxChange={handleCheckboxChange}
+      />
       <div className="flex justify-center gap-2">
         {tabIndex > 0 && (
           <button

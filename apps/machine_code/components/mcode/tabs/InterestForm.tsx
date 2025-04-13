@@ -1,8 +1,6 @@
-import { error } from "console";
 import React from "react";
 
-const InterestForm = ({ values, handleChange, errors }: any) => {
-  
+const InterestForm = ({ values, handleChange, errors, handleCheckboxChange }: any) => {
 
   return (
     <section className="w-full flex flex-col gap-3 items-center">
@@ -33,9 +31,11 @@ const InterestForm = ({ values, handleChange, errors }: any) => {
                   <input
                     id="comments"
                     aria-describedby="comments-description"
-                    name="comments"
+                    name="by_email"
                     type="checkbox"
-                    checked
+                    value="comments"
+                    checked={values.by_email.includes('comments')}
+                    onChange={handleCheckboxChange}
                   />
                 </div>
               </div>
@@ -51,8 +51,11 @@ const InterestForm = ({ values, handleChange, errors }: any) => {
                   <input
                     id="candidates"
                     aria-describedby="candidates-description"
-                    name="candidates"
+                    name="by_email"
                     type="checkbox"
+                    value="candidates"
+                    checked={values.by_email.includes('candidates')}
+                    onChange={handleCheckboxChange}
                   />
                 </div>
               </div>
@@ -71,8 +74,11 @@ const InterestForm = ({ values, handleChange, errors }: any) => {
                   <input
                     id="offers"
                     aria-describedby="offers-description"
-                    name="offers"
+                    name="by_email"
                     type="checkbox"
+                    value="offers"
+                    checked={values.by_email.includes('offers')}
+                    onChange={handleCheckboxChange}
                   />
                 </div>
               </div>

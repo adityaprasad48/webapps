@@ -1,6 +1,5 @@
-'use client';
+"use client";
 import { useState } from "react";
-
 
 interface IComment {
   id: number;
@@ -11,7 +10,7 @@ interface IComment {
 const Comment = ({
   comment,
   handleAddComment,
-  level = 0
+  level = 0,
 }: {
   comment: IComment;
   handleAddComment: (id: number, reply: IComment) => void;
@@ -35,16 +34,19 @@ const Comment = ({
     setShowReplyForm(false);
   };
 
-  console.log('level', level)
-
   return (
     <div className="comment">
-      <div style={{
-        marginLeft: level * 10 + 'px'
-      }} className="comment_reply">
+      <div
+        style={{
+          marginLeft: level * 10 + "px",
+        }}
+        className="comment_reply"
+      >
         <p>{comment.text}</p>
         {!showReplyForm ? (
-          <button className="reply_btn" onClick={toggleReplyForm}>Reply</button>
+          <button className="reply_btn" onClick={toggleReplyForm}>
+            Reply
+          </button>
         ) : (
           <div className="reply_form">
             <input
@@ -56,7 +58,7 @@ const Comment = ({
             />
             <Button onClick={handleAddReply}>Reply</Button>
           </div>
-      )}
+        )}
       </div>
 
       {comment.replies.length > 0 && (
@@ -75,12 +77,11 @@ const Comment = ({
   );
 };
 
-
 function Comments() {
   const [commentVal, setCommentVal] = useState("");
 
   // nested comments state structure
-  const initialComments:IComment[] = [
+  const initialComments: IComment[] = [
     {
       id: 1,
       text: "This is a comment _id 1",
@@ -115,7 +116,7 @@ function Comments() {
 
   const addComment = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    if(!commentVal) return;
+    if (!commentVal) return;
     const comment = {
       id: comments.length + 1 + Math.random(),
       text: commentVal,
@@ -125,12 +126,16 @@ function Comments() {
     setCommentVal("");
   };
 
-  function findAndUpdateComment(comments:IComment[], id:number, newComment:IComment) {
+  function findAndUpdateComment(
+    comments: IComment[],
+    id: number,
+    newComment: IComment
+  ) {
     for (let i = 0; i < comments.length; i++) {
-      const comment:IComment = comments[i];
+      const comment: IComment = comments[i];
       console.log(comment.id, comment.text);
       if (comment.id == id) {
-        comment.replies = [...comment.replies, newComment]
+        comment.replies = [...comment.replies, newComment];
       }
       if (comment.replies) {
         findAndUpdateComment(comment.replies, id, newComment);
@@ -139,12 +144,12 @@ function Comments() {
     return comments;
   }
 
-  const handleAddComment = (id:number, comment:IComment) => {
+  const handleAddComment = (id: number, comment: IComment) => {
     const commentCopy = [...comments];
     const newComments = findAndUpdateComment(commentCopy, id, comment);
-    console.log('newComments', newComments)
+    console.log("newComments", newComments);
     setComments(newComments);
-  }
+  };
 
   // Main render
   return (
@@ -156,10 +161,16 @@ function Comments() {
           value={commentVal}
           onChange={(e) => setCommentVal(e.target.value)}
         />
-        <button type="button" onClick={addComment}>Post Comment</button>
+        <button type="button" onClick={addComment}>
+          Post Comment
+        </button>
       </div>
       {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} handleAddComment={handleAddComment}/>
+        <Comment
+          key={comment.id}
+          comment={comment}
+          handleAddComment={handleAddComment}
+        />
       ))}
     </div>
   );

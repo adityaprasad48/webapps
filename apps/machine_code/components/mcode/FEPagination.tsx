@@ -63,9 +63,13 @@ const FEPagination = () => {
   const [pageNum, setPageNum] = useState(0);
 
   const fetchProducts = async () => {
-    const res = await fetch("https://dummyjson.com/products?limit=48");
-    const data = await res.json();
-    setProducts(data.products);
+    try {
+      const res = await fetch("https://dummyjson.com/products?limit=48");
+      const data = await res.json();
+      setProducts(data.products);
+    } catch (e: any) {
+      setProducts([]);
+    }
   };
 
   useEffect(() => {
@@ -80,8 +84,8 @@ const FEPagination = () => {
   const start = pageNum * pageSize;
   const end = start + pageSize;
 
-  console.log("start", start);
-  console.log("end", end);
+  // console.log("start", start);
+  // console.log("end", end);
 
   const pageBtns = Array(totalPages)
     .fill(0)

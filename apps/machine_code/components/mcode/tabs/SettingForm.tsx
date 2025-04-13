@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 
-const SettingForm = ({ values, handleChange }: any) => {
+const SettingForm = ({ values, handleChange, errors }: any) => {
   const radioCls =
     "relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-purple-600 checked:bg-purple-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden";
 
   return (
-    <div className="w-[320px]">
+    <div>
       <div className="sm:col-span-3">
         <label
           htmlFor="country"
@@ -23,6 +23,7 @@ const SettingForm = ({ values, handleChange }: any) => {
             autoComplete="country-name"
             className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 sm:text-sm/6"
           >
+            <option value="">Select Country</option>
             <option value="india">India</option>
             <option value="us">United States</option>
             <option value="canada">Canada</option>
@@ -41,6 +42,7 @@ const SettingForm = ({ values, handleChange }: any) => {
               clipRule="evenodd"
             />
           </svg>
+          {errors.country && <span className="text-sm text-red-500">{errors.country}</span>}
         </div>
       </div>
       <fieldset className="">

@@ -1,12 +1,10 @@
 "use client";
-import { error } from "console";
 import React from "react";
 
 const ProfileForm = ({ values, errors, handleChange }: any) => {
   return (
-    <div>
-      <section className="flex flex-col gap-6 items-center">
-        <div className="space-y-1">
+      <section className="w-full flex flex-col gap-3 items-center">
+        <div className="w-full space-y-1">
           <label className="block text-sm font-medium text-gray-700">
             Full name
           </label>
@@ -19,9 +17,9 @@ const ProfileForm = ({ values, errors, handleChange }: any) => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
           />
-          {errors.name && <span>{errors.name}</span>}
+          {errors.full_name && <span className="text-sm text-red-500">{errors.full_name}</span>}
         </div>
-        <div className="space-y-1">
+        <div className="w-full space-y-1">
           <label className="block text-sm font-medium text-gray-700">
             Email
           </label>
@@ -36,7 +34,6 @@ const ProfileForm = ({ values, errors, handleChange }: any) => {
           />
         </div>
       </section>
-    </div>
   );
 };
 

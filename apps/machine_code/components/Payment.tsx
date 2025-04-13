@@ -32,7 +32,7 @@ function Payment() {
     }
   };
 
-  console.log('process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID', process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
+  // console.log('process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID', process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
 
   const processPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

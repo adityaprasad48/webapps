@@ -11,9 +11,11 @@ const FormTab = () => {
     profile_email: "",
     interest_name: "",
     interest_email: "",
-    country: "india",
+    country: "",
     push_notifications: "0",
   });
+
+  console.log({ values });
 
   const [errors, setErrors] = useState({});
 
@@ -31,7 +33,7 @@ const FormTab = () => {
       name: "Profile",
       comp: ProfileForm,
       validate: () => {
-        console.log('validate')
+        console.log("validate");
         const err = {};
         let isError = false;
         if (!values.full_name) {
@@ -45,26 +47,37 @@ const FormTab = () => {
     {
       name: "Interest",
       comp: InterestForm,
+      validate: () => {
+        console.log("validate Interest Form");
+        const err = {};
+        let isError = false;
+        if (!values.interest_name) {
+          err.interest_name = "Interest Name is Required.";
+          isError = true;
+        }
+        setErrors(err);
+        return isError;
+      },
     },
     {
       name: "Setting",
       comp: SettingForm,
+      validate: () => {
+        console.log("validate Setting Form");
+        const err = {};
+        let isError = false;
+        if (!values.country) {
+          err.country = "Country is Required.";
+          isError = true;
+        }
+        setErrors(err);
+        return isError;
+      },
     },
   ];
 
-  const Form: any = FormComps[tabIndex]?.comp;
-
-  // const handleTab = (index: number) => {
-  //   setTabIndex(index);
-  // };
-
-  // const handleNext = () => {
-  //   setTabIndex((prev) => prev + 1);
-  // };
-
-  // const handlePrev = () => {
-  //   setTabIndex((prev) => prev - 1);
-  // };
+  const Form: any = FormComps[tabIndex];
+  const FormComp: any = Form.comp;
 
   const totalTabs = 3;
 
@@ -75,8 +88,9 @@ const FormTab = () => {
   };
 
   const handleNext = () => {
-    FormComps[tabIndex].validate();
-    // setTabIndex((prev) => (prev < totalTabs - 1 ? prev + 1 : prev));
+    if (!Form.validate()) {
+      setTabIndex((prev) => (prev < totalTabs - 1 ? prev + 1 : prev));
+    }
   };
 
   const handlePrev = () => {
@@ -90,7 +104,7 @@ const FormTab = () => {
   console.log("errors", errors);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-[320px] flex flex-col gap-2">
       <div className="w-full flex justify-between text-center gap-2 ">
         {FormComps.map((form, index) => (
           <button
@@ -106,12 +120,12 @@ const FormTab = () => {
           </button>
         ))}
       </div>
-      <Form values={values} handleChange={handleChange} errors={errors} />
+      <FormComp values={values} handleChange={handleChange} errors={errors} />
       <div className="flex justify-center gap-2">
         {tabIndex > 0 && (
           <button
             type="button"
-            onClick={handleNext}
+            onClick={handlePrev}
             className="w-1/2 px-4 py-2 text-white bg-purple-600 rounded-md shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
           >
             Prev
@@ -120,7 +134,7 @@ const FormTab = () => {
         {tabIndex < 2 && (
           <button
             type="button"
-            onClick={handlePrev}
+            onClick={handleNext}
             className="w-1/2 px-4 py-2 text-white bg-amber-600 rounded-md shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
           >
             Next

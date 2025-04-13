@@ -1,9 +1,9 @@
 "use client";
 
 import { Copy, Newspaper } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-const genrateOtp = (length: number) => {
+const generateOtp = (length:number) => {
   let result = "";
   const characters = "123456789";
   const charactersLength = characters.length;
@@ -11,17 +11,22 @@ const genrateOtp = (length: number) => {
     const randomChar = characters.charAt(
       Math.floor(Math.random() * charactersLength)
     );
-    console.log("randomChar", randomChar);
+    // console.log("randomChar", randomChar);
     result += randomChar;
   }
   return result;
 };
 
-
 const OTPInput = () => {
-  const [createdOtp, setCreatedOtp] = useState(genrateOtp(4));
   const [otp, setOtp] = useState(["", "", "", ""]);
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const [createdOtp, setCreatedOtp] = useState();
+
+  useEffect(() => {
+    const generated: any = generateOtp(4);
+    setCreatedOtp(generated);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -75,7 +80,6 @@ const OTPInput = () => {
     console.log("OTP Submitted:", otp.join(""));
   };
 
-  
   const handleCopy = () => {
     navigator.clipboard.writeText(createdOtp).then(() => {
       console.log("OTP copied to clipboard", createdOtp);
@@ -114,7 +118,7 @@ const OTPInput = () => {
 
       <div className="flex justify-center items-center gap-2 mt-4">
         <button
-          onClick={() => setCreatedOtp(genrateOtp(4))}
+          onClick={() => setCreatedOtp(generateOtp(4))}
           className="ml-4 bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
           <Newspaper className="inline-block mr-2" />
@@ -125,7 +129,7 @@ const OTPInput = () => {
           onClick={handleCopy}
           className="ml-4 bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
-          <Copy height={25} width={30}/>
+          <Copy height={25} width={30} />
         </button>
       </div>
     </form>

@@ -1,9 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Progress = ({ value }: { value: number }) => {
-  const safeValue = Math.min(100, Math.max(0, value));
+  const [animateValue, setAnimateValue] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => setAnimateValue(value), 100);
+  }, []);
+
+  const safeValue = Math.min(100, Math.max(0, animateValue));
   const translateXVal = -(100 - safeValue); // -100 to 0
 
   return (
@@ -27,7 +33,7 @@ const Progress = ({ value }: { value: number }) => {
 const ProgressBar = () => {
   return (
     <div className="w-full flex flex-col gap-3 p-4">
-      {[10, 30, 60, 90].map((item, idx) => (
+      {[10, 30, 60, 90, 80].map((item, idx) => (
         <Progress key={idx} value={item} />
       ))}
     </div>

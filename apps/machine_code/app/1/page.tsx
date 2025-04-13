@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import ProgressBar from "../../components/mcode/comp_1/ProgressBar";
 import RedGreenLight from "../../components/mcode/comp_1/RedGreenLight";
+import TrafficLights from "../../components/mcode/comp_1/TrafficLights";
 
 const Grid = ({
   className,
@@ -43,6 +44,11 @@ export default function Home() {
         </Grid.Item>
         <Grid.Item>
           <RedGreenLight />
+        </Grid.Item>
+      </Grid>
+      <Grid>
+        <Grid.Item>
+          <TrafficLights />
         </Grid.Item>
       </Grid>
     </div>

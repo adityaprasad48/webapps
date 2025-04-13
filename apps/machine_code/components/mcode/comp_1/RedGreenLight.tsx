@@ -2,23 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const lights = [
-  [0, 0, 1],
-  [0, 1, 0],
-  [1, 0, 0],
+  [1, 1, 0],
+  [1, 1, 0],
+  [0, 1, 1],
 ];
-
-const getZeroLightCount = (lights: any) => {
-  let count = 0;
-  for (let i = 0; i < lights.length; i++) {
-    for (let j = 0; j < lights[i]?.length; j++) {
-      const item = lights[i][j];
-      if (item == 0) {
-        count = count + 1;
-      }
-    }
-  }
-  return count;
-};
 
 const getKey = (rowIndex, colIndex) => {
   return `${rowIndex}-${colIndex}`;
@@ -26,12 +13,12 @@ const getKey = (rowIndex, colIndex) => {
 
 const RedGreenLight = () => {
   const [lightOrder, setLightOrder] = useState(new Map());
-  const count = getZeroLightCount(lights);
+  const lightCount = lights.flat().reduce((item, acc) => acc + item, 0);
 
-  console.log("count", getZeroLightCount(lights));
+  console.log("count", lightCount);
 
   const handleLight = (key: string, val: number) => {
-    const isDisable = val == 1;
+    const isDisable = val == 0;
     if (!isDisable) {
       const lightOrderClone = new Map(lightOrder);
       lightOrderClone.set(key, true);
@@ -42,7 +29,7 @@ const RedGreenLight = () => {
   console.log("lightOrder", lightOrder);
 
   const getBackground = (key: string, val: number) => {
-    const isDisable = val === 1;
+    const isDisable = val === 0;
     if (isDisable) {
       return "gray";
     } else {
@@ -54,37 +41,35 @@ const RedGreenLight = () => {
     }
   };
 
-  // const intervalRef = useRef(null); // Create a ref to store the interval ID
+  function resetLightOrder() {
+    const intervalId = setInterval(() => {
+      if (lightOrder.size == 0) {
+        clearInterval(intervalId);
+      }
 
-  // useEffect(() => {
+      //* did not work
+      //* It uses stale state. If React batches state updates (like in concurrent mode), lightOrder might not be the most recent value.
+      //* It can lead to race conditions if multiple state updates are queued.
+      // const newLightOrder = new Map(lightOrder);
+      // const lastKey = Array.from(newLightOrder.keys()).pop();
+      // newLightOrder.delete(lastKey);
+      // setLightOrder(newLightOrder)
 
-  //   if (lightOrder.size === count) {
-  //     // Clear any existing interval
-  //     if (intervalRef.current) {
-  //       clearInterval(intervalRef.current);
-  //     }
+      // prefer this if multiple state update is queue
+      setLightOrder((preLightOrder) => {
+        const newLightOrder = new Map(preLightOrder);
+        const lastKey = Array.from(newLightOrder.keys()).pop();
+        newLightOrder.delete(lastKey);
+        return newLightOrder;
+      });
+    }, 1000);
+  }
 
-  //     // Set a new interval
-  //     intervalRef.current = setInterval(() => {
-  //       const lightOrderClone = new Map(lightOrder);
-  //       const firstKey = lightOrderClone.keys().next().value;
-  //       lightOrderClone.delete(firstKey);
-  //       setLightOrder(lightOrderClone);
-  //     }, 1000);
-  //   }
-
-  //   // Clear the interval if lightOrder.size becomes 0
-  //   if (lightOrder.size === 0) {
-  //     clearInterval(intervalRef.current);
-  //   }
-
-  //   // Cleanup interval when the component unmounts or lightOrder.size changes
-  //   return () => {
-  //     if (intervalRef.current) {
-  //       clearInterval(intervalRef.current);
-  //     }
-  //   };
-  // }, [lightOrder.size, count]);
+  useEffect(() => {
+    if (lightOrder.size == lightCount) {
+      resetLightOrder();
+    }
+  }, [lightOrder.size]);
 
   return (
     <div className="w-[240px] flex flex-wrap border">
@@ -97,9 +82,7 @@ const RedGreenLight = () => {
             }}
             className="h-[80px] basis-1/3 flex items-center justify-center border border-gray-300"
             onClick={handleLight.bind(null, getKey(rowIndex, colIndex), col)}
-          >
-            {colIndex}
-          </div>
+          ></div>
         ))
       )}
     </div>

@@ -15,7 +15,7 @@ const RedGreenLight = () => {
   const [lightOrder, setLightOrder] = useState(new Map([["0-0", true]]));
   const lightCount = lights.flat().reduce((item, acc) => acc + item, 0);
 
-  console.log("count", lightCount);
+  // console.log("count", lightCount);
 
   const handleLight = (key: string, val: number) => {
     const isDisable = val == 0;
@@ -26,7 +26,7 @@ const RedGreenLight = () => {
     }
   };
 
-  console.log("lightOrder", lightOrder);
+  // console.log("lightOrder", lightOrder);
 
   const getBackground = (key: string, val: number) => {
     const isDisable = val === 0;

@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import ProgressBar from "../../components/mcode/comp_1/ProgressBar";
 import RedGreenLight from "../../components/mcode/comp_1/RedGreenLight";
 import TrafficLights from "../../components/mcode/comp_1/TrafficLights";
+import TicTacToe from "../../components/mcode/TicTacToe";
 
 const Grid = ({
   className,
@@ -39,6 +40,14 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-10 min-h-screen">
       <Grid>
+        {/* <Grid.Item>
+          <TrafficLights />
+        </Grid.Item> */}
+        <Grid>
+          <TicTacToe />
+        </Grid>
+      </Grid>
+      <Grid>
         <Grid.Item>
           <ProgressBar />
         </Grid.Item>
@@ -46,12 +55,6 @@ export default function Home() {
           <RedGreenLight />
         </Grid.Item>
       </Grid>
-      <Grid>
-        <Grid.Item>
-          <TrafficLights />
-        </Grid.Item>
-      </Grid>
-      
     </div>
   );
 }

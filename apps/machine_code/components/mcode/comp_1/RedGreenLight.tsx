@@ -12,7 +12,7 @@ const getKey = (rowIndex, colIndex) => {
 };
 
 const RedGreenLight = () => {
-  const [lightOrder, setLightOrder] = useState(new Map());
+  const [lightOrder, setLightOrder] = useState(new Map([["0-0", true]]));
   const lightCount = lights.flat().reduce((item, acc) => acc + item, 0);
 
   console.log("count", lightCount);

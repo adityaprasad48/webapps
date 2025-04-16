@@ -14,16 +14,19 @@ const Header = () => {
     setIsOpen(false);
   };
 
+  // on scroll => bg-white
+
   return (
-    <header className="h-[64px] flex items-center px-4 mb-2">
+    <header className="fixed top-0 left-0 w-full z-50 h-auto desktop-s:bg-white transition-colors duration-200 bg-transparent h-[64px] flex items-center px-4 mb-2 py-2 border-b border-gray-200 bg-white">
       <div className="flex items-center gap-2">
+        
         <Link href="/" className="text-4xl font-bold text-orange-400">
           A
         </Link>
         <div className="flex gap-4 ml-4">
-          <span>Page 1</span>
-          <span>Page 2</span>
-          <span>Page 3</span>
+          <span><Link href="/1">Page 1</Link></span>
+          <span><Link href="/2">Page 2</Link></span>
+          <span><Link href="/3">Page 3</Link></span>
         </div>
       </div>
 
@@ -31,7 +34,7 @@ const Header = () => {
         <button className="bg-orange-400 text-white px-4 py-2 rounded-lg  text-sm">
           Sign Up
         </button>
-        <button className="bg-gray-400 text-steal-400 px-4 py-2 rounded-lg text-sm">
+        <button className="bg-gray-200 text-steal-400 px-4 py-2 rounded-lg text-sm">
           Login
         </button>
         <div className="relative">

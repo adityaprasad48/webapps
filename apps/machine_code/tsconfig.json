@@ -6,6 +6,9 @@
         "name": "next"
       }
     ]
+    ,"paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "**/*.ts",
@@ -17,7 +20,5 @@
   "exclude": [
     "node_modules"
   ],
-  "paths": {
-      "@/*": ["./*"]
-    }
+  
 }

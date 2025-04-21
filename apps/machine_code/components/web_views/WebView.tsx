@@ -2,17 +2,46 @@
 
 import React, { useEffect } from "react";
 
+
+
 const WebView = () => {
+  useEffect(() => {
+    const checkboxes = document.querySelector(".toggle-switch");
+
+    return () => {};
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-amber-50">
-      <ToggleSwitch1 />
+    <div className="flex flex-col items-center justify-center w-screen h-screen bg-amber-50 border-2 border-amber-300 overflow-hidden relative">
+      <div className="absolute bottom-0 left-0 w-full bg-gray-800 opacity-50">
+        <div className="flex items-center space-x-6 w-full h-[80px] bg-gray-500">
+          {Array.from({ length: 10 }, (_, i) => (
+            <div
+              key={i}
+              className="w-[50px] h-[50px] bg-gray-900 rounded-lg"
+            ></div>
+          ))}
+        </div>
+      </div>
+      <div className="w-full h-full bg-gray-300 overflow-auto">
+        {Array.from({ length: 20 }, (_, i) => (
+          <div key={i} className="flex w-full h-[100px] space-x-2">
+            <div className="size-15 bg-gray-400 rounded-lg"></div>
+            <div className="flex-1 flex flex-col space-y-2">
+              <div className="w-full h-[20px] bg-gray-500 rounded"></div>
+              <div className="w-full h-[20px] bg-gray-500 rounded"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* <ToggleSwitch1 />
       <ToggleSwitch />
       <RadioInput />
       <CheckBoxInput />
       <div className="flex space-x-2">
         <input className="size-10" type="radio" name="sample" defaultChecked />
         <input className="size-10" type="radio" name="sample" />
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -95,7 +124,7 @@ const ToggleSwitch = () => {
 const ToggleSwitch1 = () => {
   useEffect(() => {
     const checkboxes = document.querySelectorAll(".toggle-switch");
-    console.log('checkboxes', checkboxes)
+    console.log("checkboxes", checkboxes);
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("click", (e) => {
         // alert("Checkbox clicked");

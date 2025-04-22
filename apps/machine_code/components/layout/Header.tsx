@@ -1,12 +1,13 @@
 "use client";
+import { dropDowns } from "@/utils/header";
 import {
   BotIcon,
   CrosshairIcon,
   HammerIcon,
+  Menu,
   PiIcon,
   TvIcon,
 } from "lucide-react";
-import { set } from "mongoose";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -28,66 +29,28 @@ const Header = () => {
     setIconNum(num);
   };
 
-  const dropDowns = [
-    {
-      name: "Home",
-      childs: [],
-    },
-    {
-      name: "About",
-      childs: [],
-    },
-    {
-      name: "Game",
-      childs: [
-        { name: "Game 1", link: "/game/1" },
-        { name: "Game 2", link: "/game/2" },
-      ],
-    },
-    {
-      name: "Forms",
-      childs: [
-        { name: "Form 1", link: "/form/1" },
-        { name: "Form 2", link: "/form/2" },
-      ],
-    },
-    {
-      name: "Data",
-      childs: [
-        { name: "Data 1", link: "/data/1" },
-        { name: "Data 2", link: "/data/2" },
-      ],
-    },
-    {
-      name: "UI Components",
-      childs: [
-        { name: "Component 1", link: "/component/1" },
-        { name: "Component 2", link: "/component/2" },
-      ],
-    },
-  ];
-
-  // on scroll => bg-white
-
   return (
-    <header className="fixed top-0 left-0 w-full z-50 desktop-s:bg-white transition-colors duration-200  h-[64px] flex items-center px-4 mb-2 py-2 border-b border-gray-200 bg-white">
+    <header className="fixed top-0 left-0 w-full z-50 desktop-s:bg-white transition-colors duration-200  h-[64px] flex items-center px-4 mb-2 border-b border-gray-200 bg-orange-50">
       <div>
+        <button className="md:hidden" onClick={handleOpen}>
+          <Menu className="w-5 h-5" />
+        </button>
         <Link href="/" className="text-4xl font-bold text-orange-400">
           A
         </Link>
       </div>
-      <div className="ml-auto hidden md:block">
-        <div className="w-full flex space-y-2 ml-4">
+      <div className="h-full w-full ml-auto hidden md:block">
+        <div className="w-full flex justify-center items-center space-x-1">
           {dropDowns.map((item, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group flex items-center">
               <Link
                 href={item.link ? item.link : "#"}
-                className="text-gray-600 hover:text-gray-800 font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
+                className="flex justify-center items-center px-2 text-gray-600 hover:text-gray-800 h-[65px] rounded-lg transition-colors duration-200"
               >
                 {item.name}
               </Link>
               {item.childs.length > 0 && (
-                <div className="absolute top-10 left-0 w-48 bg-white shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-200 hidden group-hover:block backdrop-blur-md">
+                <div className="absolute top-[62px] left-0 w-48 bg-white shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-200 hidden group-hover:block backdrop-blur-md">
                   {item.childs.map((child, index) => (
                     <Link
                       key={index}
@@ -105,10 +68,10 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-4 ml-auto">
-        <button className="bg-orange-400 text-white px-4 py-2 rounded-lg  text-sm">
+        <button className="bg-orange-400 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap">
           Sign Up
         </button>
-        <button className="bg-gray-200 text-steal-400 px-4 py-2 rounded-lg text-sm">
+        <button className="bg-gray-200 text-steal-400 px-4 py-2 rounded-lg text-sm whitespace-nowrap">
           Login
         </button>
 

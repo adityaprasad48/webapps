@@ -1,0 +1,54 @@
+import DragToFolder from "@/components/mcode/drag/DragToFolder";
+import FaceBuilder from "@/components/mcode/drag/FaceBuilder";
+import InventoryGrid from "@/components/mcode/drag/InventoryGrid";
+import BorderShape from "@/components/web_views/BorderShape";
+import BoxShadow from "@/components/web_views/BoxShadow";
+import CustomInput from "@/components/web_views/CustomInput";
+import CustomSelect from "@/components/web_views/CustomSelect";
+import { link } from "fs";
+
+export const dropDowns = [
+  {
+    name: "Home",
+    link: '/',
+    childs: [],
+  },
+  {
+    name: "About",
+    link: '/about',
+    childs: [],
+  },
+  {
+    name: "UI/UX",
+    childs: [
+      { name: "Input", link: "/ui/1", comp: CustomInput},
+      { name: "Select", link: "/ui/2" , comp: CustomSelect},
+      { name: "Drop Down", link: "/ui/3" , comp: BorderShape},
+      { name: "Css Tooltip", link: "/ui/4", comp: BoxShadow },
+      { name: "Tooltip JS", link: "/ui/5" , comp: CustomInput},
+      { name: "Mobile Nav", link: "/ui/6", comp: CustomInput },
+    ],
+  },
+  {
+    name: "Forms",
+    childs: [
+      { name: "Form 1", link: "/form/1" },
+      { name: "Form 2", link: "/form/2" },
+    ],
+  },
+  {
+    name: "Drag n Drop",
+    childs: [
+      { name: "Drag to Folder", link: "/drag/1",  comp: DragToFolder},
+      { name: "Face builder", link: "/drag/2",  comp: FaceBuilder},
+      { name: "Inventory Box", link: "/drag/3" ,comp: InventoryGrid},
+    ],
+  },
+  {
+    name: "UI Components",
+    childs: [
+      { name: "Component 1", link: "/component/1" },
+      { name: "Component 2", link: "/component/2" },
+    ],
+  },
+];

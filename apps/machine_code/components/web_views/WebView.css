@@ -306,3 +306,11 @@
   border-top: 4px solid green;
   border-bottom: 4px solid black;
 }
+
+.awesome_shadow {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 1px 3px;
+  }
+}
+

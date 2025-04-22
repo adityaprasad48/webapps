@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { HammerIcon, HomeIcon, Plus } from "lucide-react";
 import Header from "../components/layout/Header";
-import Home from "./page";
+import SideBar from "@/components/layout/SideBar";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,56 +30,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
         <main className="pt-15 flex flex-row md:flex-row gap-4">
-          <div className="min-w-[250px] w-[250px] min-h-screen border-r border-gray-300 bg-white flex flex-col items-center  text-gray-500">
-            <div className="flex items-center justify-between w-full px-4 py-4 border-b border-gray-300">
-              <div className="h-full flex items-center space-x-2">
-                <HomeIcon className="w-5 h-5" />
-                <span className="text-sm">Game</span>
-              </div>
-              {false && (
-                <span>
-                  <Plus className="w-5 h-5" />
-                </span>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between w-full px-4 py-4 border-b border-gray-300 group hover:text-gray-700">
-              <div className="h-full flex items-center space-x-2">
-                <HomeIcon className="w-5 h-5 " />
-                <span className="text-sm">Game</span>
-              </div>
-              <span>
-                <Plus className="w-5 h-5" />
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between w-full px-4 py-4 border-b border-gray-300">
-              <div className="h-full flex items-center space-x-2">
-                <HomeIcon className="w-5 h-5" />
-                <span className="text-sm">Forms</span>
-              </div>
-              <span>
-                <Plus className="w-5 h-5" />
-              </span>
-            </div>
-
-            <div className="flex flex-col w-full  border-b border-gray-300">
-              <div className="flex items-center justify-between w-full  border-b border-gray-300 px-4 py-4">
-                <div className="flex items-center space-x-2">
-                  <HomeIcon className="w-5 h-5" />
-                  <span className="text-sm">Drag n Drop</span>
-                </div>
-                <span className="text-sm bg-gray-200 p-1 rounded-full text-gray-700">
-                  <Plus className="w-5 h-5" />
-                </span>
-              </div>
-              <div>
-                <div className="pl-4 flex items-center justify-between w-full px-4 py-4 border-b border-gray-300">
-                  Inventory Box
-                </div>
-              </div>
-            </div>
-          </div>
+          <SideBar />
           <div className="">{children}</div>
         </main>
         <div id="modal-root" />

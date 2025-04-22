@@ -3,7 +3,7 @@ import React from "react";
 
 const Nav = () => {
   return (
-    <div>
+    <div className="hidden">
       <div className="px-5 py-0 block desktop-s:flex flex-col bg-white w-full h-screen min-h-full fixed left-0 top-0 z-30 overflow-y-scroll transition tablet-l:max-h-[100dvh] opacity-100 select-none pointer-events-none ">
         <div className="fixed top-0 left-0 bg-white w-full h-20 z-10" />
         <ul className="mt-16 w-full top-20">

@@ -489,3 +489,40 @@ tooltip[data-tip]:not([data-tip=""]).top-left::after {
   outline: none;
   background: #f2f2f2;
 }
+
+/* button group */
+
+button {
+  margin: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 35px;
+  width: 85px;
+}
+
+#btn-1 {
+  border: 0;
+  background: #ddd;
+  color: #222;
+}
+
+#btn-2 {
+  background: #222;
+  color: #ddd;
+}
+
+@keyframes ripple {
+  100% {
+    transform: translate(-50%, -50%) scale(100);
+    opacity: 0;
+  }
+}

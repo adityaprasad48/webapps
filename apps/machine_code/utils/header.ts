@@ -3,6 +3,7 @@ import FaceBuilder from "@/components/mcode/drag/FaceBuilder";
 import InventoryGrid from "@/components/mcode/drag/InventoryGrid";
 import BorderShape from "@/components/web_views/BorderShape";
 import BoxShadow from "@/components/web_views/BoxShadow";
+import Buttons from "@/components/web_views/Buttons";
 import CssTooltip from "@/components/web_views/CssTooltip";
 import CustomInput from "@/components/web_views/CustomInput";
 import CustomSelect from "@/components/web_views/CustomSelect";
@@ -31,6 +32,8 @@ export const dropDowns = [
       { name: "Tooltip JS", link: "/ui/5" , comp: CustomInput},
       { name: "Web Dialog", link: "/ui/6" , comp: WebDialog},
       { name: "Mobile Nav", link: "/ui/7", comp: CustomInput },
+      { name: "Border Shape", link: "/ui/8", comp: BorderShape },
+      { name: "Button Groups", link: "/ui/9", comp: Buttons },
     ],
   },
   {

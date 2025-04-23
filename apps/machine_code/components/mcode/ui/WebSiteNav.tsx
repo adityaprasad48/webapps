@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const Nav = () => {
+const WebSiteNav = () => {
   return (
     <div className="hidden">
       <div className="px-5 py-0 block desktop-s:flex flex-col bg-white w-full h-screen min-h-full fixed left-0 top-0 z-30 overflow-y-scroll transition tablet-l:max-h-[100dvh] opacity-100 select-none pointer-events-none ">
@@ -947,4 +947,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default WebSiteNav;

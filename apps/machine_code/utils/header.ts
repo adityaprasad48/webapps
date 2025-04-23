@@ -7,6 +7,7 @@ import CssTooltip from "@/components/web_views/CssTooltip";
 import CustomInput from "@/components/web_views/CustomInput";
 import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
+import WebDialog from "@/components/web_views/webdialog/WebDialog";
 import { link } from "fs";
 
 export const dropDowns = [
@@ -28,7 +29,8 @@ export const dropDowns = [
       { name: "Drop Down", link: "/ui/3" , comp: DropDown},
       { name: "Css Tooltip", link: "/ui/4", comp: CssTooltip },
       { name: "Tooltip JS", link: "/ui/5" , comp: CustomInput},
-      { name: "Mobile Nav", link: "/ui/6", comp: CustomInput },
+      { name: "Web Dialog", link: "/ui/6" , comp: WebDialog},
+      { name: "Mobile Nav", link: "/ui/7", comp: CustomInput },
     ],
   },
   {

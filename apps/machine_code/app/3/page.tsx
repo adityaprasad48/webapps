@@ -4,7 +4,7 @@ import RotatingClock from "../../components/mcode/ui/RotatingClock";
 import GoodText from "../../components/typography/GoodText";
 import TextEditor from "../../components/typography/TextDesigner";
 import RatingFeed from "@/components/mcode/ui/RatingFeed";
-import Nav from "@/components/mcode/ui/Nav";
+import Nav from "@/components/mcode/ui/WebSiteNav";
 
 export default function Home() {
   return (

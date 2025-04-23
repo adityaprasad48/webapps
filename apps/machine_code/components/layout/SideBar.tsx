@@ -9,7 +9,9 @@ import {
   Droplet,
   Minus,
   X,
+
 } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const SideBar = () => {
@@ -54,7 +56,7 @@ const SideBar = () => {
                 className="cursor-pointer text-gray-500 hover:text-gray-700"
               >
                 {openIndexes.includes(index) ? (
-                  <Minus className="w-4 h-4 " />
+                  <Minus className="w-4 h-4" />
                 ) : (
                   <Plus className="w-4 h-4" />
                 )}
@@ -68,7 +70,7 @@ const SideBar = () => {
                   key={childIndex}
                   className="flex items-center space-x-2 pl-8 py-1 text-gray-500 hover:text-gray-700"
                 >
-                  <span className="text-sm">{child.name}</span>
+                  <Link href={child.link} className="text-sm">{child.name}</Link>
                 </div>
               ))}
             </div>

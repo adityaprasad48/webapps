@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "../components/layout/Header";
 import SideBar from "@/components/layout/SideBar";
 
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -29,9 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
-        <main className="pt-15 flex flex-row md:flex-row gap-4">
+        <main className="pt-15 w-full h-full flex flex-row md:flex-row gap-4">
           <SideBar />
-          <div className="">{children}</div>
+          <div className="h-full flex-1"> {children}</div>
         </main>
         <div id="modal-root" />
       </body>

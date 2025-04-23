@@ -7,13 +7,13 @@ export default function Page() {
   const { slug: comp_index } = useParams();
 
   const Component = dropDowns.find((item) => item.name == "UI/UX")?.childs[
-    comp_index
+    Number(comp_index) - 1
   ]?.comp;
 
   console.log("params", comp_index);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center">
       <Component />
     </div>
   );

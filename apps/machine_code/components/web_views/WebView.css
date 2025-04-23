@@ -310,7 +310,182 @@
 .awesome_shadow {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 1px 3px;
+    box-shadow:
+      rgba(0, 0, 0, 0.15) 0px 2px 4px,
+      rgba(0, 0, 0, 0.15) 0px 1px 3px;
   }
 }
 
+/* Tooltip Container */
+.tooltip-button {
+  margin-top: 50px;
+  padding: 12px 15px;
+  background: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip[data-tip]:not([data-tip=""]) {
+  position: relative;
+  --tooltip-color: #fff;
+  --tooltip-bg: #900;
+  cursor: pointer;
+}
+
+.tooltip[data-tip]:not([data-tip=""]).light {
+  position: relative;
+  --tooltip-color: rgba(0, 0, 0, 0.87);
+  --tooltip-bg: #eee;
+  cursor: pointer;
+}
+
+.tooltip[data-tip]:not([data-tip=""])::before {
+  content: attr(data-tip);
+  position: absolute;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  white-space: nowrap;
+  max-width: 300px;
+  z-index: 1;
+
+  left: 50%;
+  bottom: calc(100% + 5px);
+  transform: translateX(-50%);
+}
+
+.tooltip[data-tip]:not([data-tip=""]).no-pointer::after {
+  display: none
+}
+
+.tooltip[data-tip]:not([data-tip=""])::after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--tooltip-bg);
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 1px);
+  transform: translateX(-50%);
+}
+
+/* Top Left */
+.tooltip[data-tip]:not([data-tip=""]).top-left::before,
+tooltip[data-tip]:not([data-tip=""]).top-left::after {
+  transform: translateX(0);
+}
+
+.tooltip[data-tip]:not([data-tip=""]).top-left::before {
+  left: 0;
+}
+
+.tooltip[data-tip]:not([data-tip=""]).top-left::after {
+  left: 5px;
+}
+
+/* Top Right */
+.tooltip[data-tip]:not([data-tip=""]).top-right::before {
+  left: 100%;
+  transform: translate(-100%, 0);
+}
+
+.tooltip[data-tip]:not([data-tip=""]).top-right::before {
+  left: 100%;
+  transform: translate(-100%, 0);
+}
+
+/* Custom Dropdown */
+
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown .dropdown-toggle {
+  appearance: none;
+  background: #3F51B5;
+  color: #fff;
+  border: 0;
+  padding: 12px 35px 12px 12px;
+  border-radius: 3px;
+  text-align: left;
+  position: relative;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+
+.dropdown .dropdown-toggle::after {
+  content: '';
+  border-width: 6px;
+  border-radius: 3px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: inherit;
+  position: absolute;
+  right: 12px;
+  top: calc(50% + 3px);
+  transform: translateY(-50%);
+}
+
+.dropdown .dropdown-toggle.active::after {
+  border-color: transparent;
+  border-bottom-color: inherit;
+  top: calc(50% - 3px);
+}
+
+.dropdown .dropdown-menu {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%);
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(150, 150, 150, 0.65);
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  max-width: 320px;
+  width: calc(100% + 24px);
+  border-radius: 3px;
+  z-index: 10;
+  visibility: hidden;
+  overflow: auto;
+  max-height: 200px;
+}
+
+.dropdown .dropdown-menu[aria-expanded="true"] {
+  visibility: visible;
+}
+
+.dropdown .dropdown-menu > li {
+  height: 35px;
+  display: block;
+  align-items: center;
+  padding: 10px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown .dropdown-menu > li:hover,
+.dropdown .dropdown-menu > li:focus {
+  outline: none;
+  background: #f2f2f2;
+}

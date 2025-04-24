@@ -1,5 +1,6 @@
 "use client";
 import { dropDowns } from "@/utils/header";
+import { use } from "chai";
 import {
   BotIcon,
   CrosshairIcon,
@@ -9,7 +10,7 @@ import {
   TvIcon,
 } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,8 +30,48 @@ const Header = () => {
     setIconNum(num);
   };
 
+  useEffect(() => {
+    const progressBar = document.getElementById("progress");
+    if (progressBar) {
+      const handleScroll = () => {
+        const scrollTop = window.scrollY;
+        const windowHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / windowHeight) * 100;
+        progressBar.style.width = `${scrollPercent}%`;
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }
+  , []);
+
+  useEffect(() => {
+    const $progressbar = document.querySelector<HTMLElement>('#progress');
+    if ($progressbar) {
+      $progressbar.style.transformOrigin = '0% 50%';
+      $progressbar.animate(
+        [
+          { transform: 'scaleX(0)' },
+          { transform: 'scaleX(1)' },
+        ],
+        {
+          fill: 'forwards',
+          duration: 1000, // Example duration
+        }
+      );
+    }
+  }, []);
+
+  //! scroll(), scroll(root), scroll(block), scroll(inline self)
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 desktop-s:bg-white transition-colors duration-200  h-[64px] flex items-center px-4 mb-2 border-b border-gray-200 bg-orange-50">
+    <header className="fixed top-0 left-0 w-full z-50 desktop-s:bg-white transition-colors duration-200  min-h-[64px] flex items-center px-4 mb-2 border-b border-gray-200 bg-orange-50">
+      <div id="progress" className="absolute transform-left w-full h-[5px] bg-orange-500 mt-[80px] " />
       <div>
         <button className="md:hidden" onClick={handleOpen}>
           <Menu className="w-5 h-5" />

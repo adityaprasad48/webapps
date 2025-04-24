@@ -28,6 +28,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
+       
+        {/* <div className="w-full h-[1px] bg-[#eaeaea] dark:bg-[#2a2a2a]" /> */}
         <main className="pt-15 w-full h-full flex flex-row md:flex-row gap-4">
           <SideBar />
           <div className="h-full flex-1"> {children}</div>

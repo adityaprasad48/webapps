@@ -492,7 +492,9 @@ tooltip[data-tip]:not([data-tip=""]).top-left::after {
 
 /* button group */
 
-button {
+
+
+.wrapper.button {
   margin: 25px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -509,13 +511,13 @@ button {
   width: 85px;
 }
 
-#btn-1 {
+.wrapper#btn-1 {
   border: 0;
   background: #ddd;
   color: #222;
 }
 
-#btn-2 {
+.wrapper#btn-2 {
   background: #222;
   color: #ddd;
 }

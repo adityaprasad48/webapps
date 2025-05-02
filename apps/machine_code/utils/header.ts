@@ -6,8 +6,10 @@ import BoxShadow from "@/components/web_views/BoxShadow";
 import Buttons from "@/components/web_views/Buttons";
 import CssTooltip from "@/components/web_views/CssTooltip";
 import CustomInput from "@/components/web_views/CustomInput";
+import CustomNotification from "@/components/web_views/CustomNotification";
 import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
+import Notifications from "@/components/web_views/Notifications";
 import WebDialog from "@/components/web_views/webdialog/WebDialog";
 import { link } from "fs";
 
@@ -25,6 +27,7 @@ export const dropDowns = [
   {
     name: "UI/UX",
     childs: [
+      { name: "Cutom Notification", link: "/ui/11", comp: CustomNotification },
       { name: "Input", link: "/ui/1", comp: CustomInput},
       { name: "Select", link: "/ui/2" , comp: CustomSelect},
       { name: "Drop Down", link: "/ui/3" , comp: DropDown},
@@ -34,6 +37,7 @@ export const dropDowns = [
       { name: "Mobile Nav", link: "/ui/7", comp: CustomInput },
       { name: "Border Shape", link: "/ui/8", comp: BorderShape },
       { name: "Button Groups", link: "/ui/9", comp: Buttons },
+      { name: "Notifications", link: "/ui/10", comp: Notifications },
     ],
   },
   {
@@ -54,7 +58,6 @@ export const dropDowns = [
   {
     name: "UI Components",
     childs: [
-      { name: "Component 1", link: "/component/1" },
       { name: "Component 2", link: "/component/2" },
     ],
   },

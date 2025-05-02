@@ -71,7 +71,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 desktop-s:bg-white transition-colors duration-200  min-h-[64px] flex items-center px-4 mb-2 border-b border-gray-200 bg-orange-50">
-      <div id="progress" className="absolute transform-left w-full h-[5px] bg-orange-500 mt-[80px] " />
+      <div id="progress" className="left-0 fixed transform-left w-full h-[10px] bg-orange-300 mt-[80px] " />
       <div>
         <button className="md:hidden" onClick={handleOpen}>
           <Menu className="w-5 h-5" />

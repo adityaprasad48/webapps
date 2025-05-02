@@ -39,7 +39,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className="min-w-[250px] w-[250px] px-4 border-r border-l border-gray-300 bg-orange-50 flex flex-col items-start text-gray-700 relative">
+    <div className="md:hidden min-w-[250px] w-[250px] px-4 border-r border-l border-gray-300 bg-orange-50 flex flex-col items-start text-gray-700 relative">
       {dropDowns.map((dd, index) => (
         <div
           key={index}

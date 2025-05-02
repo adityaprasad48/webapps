@@ -9,35 +9,40 @@ import CustomInput from "@/components/web_views/CustomInput";
 import CustomNotification from "@/components/web_views/CustomNotification";
 import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
+import FillBoxByDrag from "@/components/web_views/FillBoxByDrag";
 import Notifications from "@/components/web_views/Notifications";
+import RangeSlider from "@/components/web_views/range_slider/RangeSlider";
 import WebDialog from "@/components/web_views/webdialog/WebDialog";
 import { link } from "fs";
 
 export const dropDowns = [
   {
     name: "Home",
-    link: '/',
+    link: "/",
     childs: [],
   },
   {
     name: "About",
-    link: '/about',
+    link: "/about",
     childs: [],
   },
   {
     name: "UI/UX",
     childs: [
-      { name: "Cutom Notification", link: "/ui/11", comp: CustomNotification },
-      { name: "Input", link: "/ui/1", comp: CustomInput},
-      { name: "Select", link: "/ui/2" , comp: CustomSelect},
-      { name: "Drop Down", link: "/ui/3" , comp: DropDown},
+      { name: "Input", link: "/ui/1", comp: CustomInput },
+      { name: "Select", link: "/ui/2", comp: CustomSelect },
+      { name: "Drop Down", link: "/ui/3", comp: DropDown },
       { name: "Css Tooltip", link: "/ui/4", comp: CssTooltip },
-      { name: "Tooltip JS", link: "/ui/5" , comp: CustomInput},
-      { name: "Web Dialog", link: "/ui/6" , comp: WebDialog},
+      { name: "Tooltip JS", link: "/ui/5", comp: CustomInput },
+      { name: "Web Dialog", link: "/ui/6", comp: WebDialog },
       { name: "Mobile Nav", link: "/ui/7", comp: CustomInput },
       { name: "Border Shape", link: "/ui/8", comp: BorderShape },
       { name: "Button Groups", link: "/ui/9", comp: Buttons },
       { name: "Notifications", link: "/ui/10", comp: Notifications },
+      { name: "Custom Notification", link: "/ui/11", comp: CustomNotification },
+      { name: "FillBoxByDrag", link: "/ui/12", comp: FillBoxByDrag },
+      { name: "Range Slider", link: "/ui/13", comp: RangeSlider },
+      
     ],
   },
   {
@@ -50,15 +55,13 @@ export const dropDowns = [
   {
     name: "Drag n Drop",
     childs: [
-      { name: "Drag to Folder", link: "/drag/1",  comp: DragToFolder},
-      { name: "Face builder", link: "/drag/2",  comp: FaceBuilder},
-      { name: "Inventory Box", link: "/drag/3" ,comp: InventoryGrid},
+      { name: "Drag to Folder", link: "/drag/1", comp: DragToFolder },
+      { name: "Face builder", link: "/drag/2", comp: FaceBuilder },
+      { name: "Inventory Box", link: "/drag/3", comp: InventoryGrid },
     ],
   },
   {
     name: "UI Components",
-    childs: [
-      { name: "Component 2", link: "/component/2" },
-    ],
+    childs: [{ name: "Component 2", link: "/component/2" }],
   },
 ];

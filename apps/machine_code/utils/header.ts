@@ -11,7 +11,7 @@ import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
 import FillBoxByDrag from "@/components/web_views/FillBoxByDrag";
 import Notifications from "@/components/web_views/Notifications";
-import RangeSlider from "@/components/web_views/range_slider/RangeSlider";
+import RangeSlider from "@/components/web_views/dot_pattern/DotPattern";
 import WebDialog from "@/components/web_views/webdialog/WebDialog";
 import { link } from "fs";
 

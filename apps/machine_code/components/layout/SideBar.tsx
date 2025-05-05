@@ -9,12 +9,11 @@ import {
   Droplet,
   Minus,
   X,
-
 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const SideBar = () => {
+const SideBar = ({isOpen}) => {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
@@ -28,33 +27,31 @@ const SideBar = () => {
   };
 
   const Icons = [
-    <HomeIcon className="w-5 h-5 text-gray-500" />,
-    <BookA className="w-5 h-5 text-gray-500" />,
-    <Droplet className="w-5 h-5 text-gray-500" />,
-    <Bandage className="w-5 h-5 text-gray-500" />,
+    <HomeIcon className="w-5 h-5 text-orange-500" />,
+    <BookA className="w-5 h-5 text-orange-500" />,
+    <Droplet className="w-5 h-5 text-orange-500" />,
+    <Bandage className="w-5 h-5 text-orange-500" />,
   ];
 
-  if (!isSidebarVisible) {
+  if (!isOpen) {
     return null; // Hide the sidebar if not visible
   }
 
   return (
-    <div className="md:hidden min-w-[250px] w-[250px] px-4 border-r border-l border-gray-300 bg-orange-50 flex flex-col items-start text-gray-700 relative">
+    <div className="md:hidden min-w-[250px] w-[250px]  py-4 px-4 border-r border-l border-gray-300 bg-orange-50 flex flex-col items-start text-gray-700 shadow-lg h-full">
       {dropDowns.map((dd, index) => (
         <div
           key={index}
-          className="w-full py-4 px-4 border-b border-gray-200 cursor-pointer"
+          className="w-full  border-b border-gray-200 cursor-pointer py-2 px-2"
+          onClick={() => toggleDropdown(index)}
         >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              {Icons[index]}
+          <div className="flex items-center justify-between py-2 px-2 rounded-lg hover:bg-orange-200/50 transition-all duration-200 ease-in-out">
+            <div className="flex items-center space-x-3 w-full ">
+              <span className=""> {Icons[index]}</span>
               <span className="text-sm font-medium">{dd.name}</span>
             </div>
             {dd.childs.length > 0 && (
-              <span
-                onClick={() => toggleDropdown(index)}
-                className="cursor-pointer text-gray-500 hover:text-gray-700"
-              >
+              <span className="cursor-pointer text-orange-500">
                 {openIndexes.includes(index) ? (
                   <Minus className="w-4 h-4" />
                 ) : (
@@ -70,7 +67,9 @@ const SideBar = () => {
                   key={childIndex}
                   className="flex items-center space-x-2 pl-8 py-1 text-gray-500 hover:text-gray-700"
                 >
-                  <Link href={child.link} className="text-sm">{child.name}</Link>
+                  <Link href={child.link} className="text-sm">
+                    {child.name}
+                  </Link>
                 </div>
               ))}
             </div>

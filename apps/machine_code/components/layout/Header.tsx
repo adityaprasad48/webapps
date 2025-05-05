@@ -6,23 +6,19 @@ import {
   CrosshairIcon,
   HammerIcon,
   Menu,
+  MenuSquareIcon,
   PiIcon,
   TvIcon,
 } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = ({ isOpen, setIsOpen: sidebarOpen }) => {
   const [iconNum, setIconNum] = useState(0);
   const [modeOpen, setModeOpen] = useState(false);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
+  const handleToggle = () => {
+    sidebarOpen((pre) => !pre);
   };
 
   const handleIconClick = (num: number) => {
@@ -33,6 +29,7 @@ const Header = () => {
   useEffect(() => {
     const progressBar = document.getElementById("progress");
     if (progressBar) {
+      progressBar.style.opacity = "1";
       const handleScroll = () => {
         const scrollTop = window.scrollY;
         const windowHeight =
@@ -47,34 +44,37 @@ const Header = () => {
         window.removeEventListener("scroll", handleScroll);
       };
     }
-  }
-  , []);
-
-  useEffect(() => {
-    const $progressbar = document.querySelector<HTMLElement>('#progress');
-    if ($progressbar) {
-      $progressbar.style.transformOrigin = '0% 50%';
-      $progressbar.animate(
-        [
-          { transform: 'scaleX(0)' },
-          { transform: 'scaleX(1)' },
-        ],
-        {
-          fill: 'forwards',
-          duration: 1000, // Example duration
-        }
-      );
-    }
   }, []);
+
+  // useEffect(() => {
+  //   const $progressbar = document.querySelector<HTMLElement>("#progress");
+  //   if ($progressbar) {
+  //     $progressbar.style.transformOrigin = "0% 50%";
+  //     $progressbar.animate(
+  //       [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }],
+  //       {
+  //         fill: "forwards",
+  //         duration: 1000, // Example duration
+  //       }
+  //     );
+  //   }
+  // }, []);
 
   //! scroll(), scroll(root), scroll(block), scroll(inline self)
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 desktop-s:bg-white transition-colors duration-200  min-h-[64px] flex items-center px-4 mb-2 border-b border-gray-200 bg-orange-50">
-      <div id="progress" className="left-0 fixed transform-left w-full h-[10px] bg-orange-300 mt-[80px] " />
+      <div
+        id="progress"
+        style={{ opacity: 0, transformOrigin: "0% 50%" }}
+        className="left-0 fixed transform-left w-full h-[7px] bg-orange-500 mt-[70px] "
+      />
       <div>
-        <button className="md:hidden" onClick={handleOpen}>
-          <Menu className="w-5 h-5" />
+        <button
+          className="md:hidden p-2 rounded-lg hover:bg-orange-200/50 transition-all duration-200 ease-in-out"
+          onClick={handleToggle}
+        >
+          {isOpen ? <MenuSquareIcon /> : <Menu />}
         </button>
         <Link href="/" className="text-4xl font-bold text-orange-400">
           A

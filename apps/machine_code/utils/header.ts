@@ -4,6 +4,7 @@ import InventoryGrid from "@/components/mcode/drag/InventoryGrid";
 import BorderShape from "@/components/web_views/BorderShape";
 import BoxShadow from "@/components/web_views/BoxShadow";
 import Buttons from "@/components/web_views/Buttons";
+import CardExpand from "@/components/web_views/CardExpand/CardExpand";
 import CssTooltip from "@/components/web_views/CssTooltip";
 import CustomInput from "@/components/web_views/CustomInput";
 import CustomNotification from "@/components/web_views/CustomNotification";
@@ -63,7 +64,7 @@ export const dropDowns = [
     ],
   },
   {
-    name: "UI Components",
-    childs: [{ name: "Component 2", link: "/component/2" }],
+    name: "Cool Stuff",
+    childs: [{ name: "Expand Card", link: "/cool/1", comp: CardExpand },],
   },
 ];

@@ -128,7 +128,7 @@ const CardExpand = () => {
           child.style.removeProperty("display")
         );
         fadeContent(cardClone, "0");
-        
+
         // shrink the card back to the original position and size
         await toggleExpansion(
           cardClone,
@@ -185,6 +185,8 @@ const CardExpand = () => {
 
   return (
     <div className="wrapper">
+      <AnimateBoxes />
+      <StackCards />
       <div className="header">
         <h1>Card Expand Animation</h1>
         <p>How to animate card expand opening</p>
@@ -201,3 +203,80 @@ const CardExpand = () => {
 };
 
 export default CardExpand;
+
+const StackCards = () => {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
+  const cards = Array.from({ length: 5 });
+
+  return (
+    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500">
+      <div className="flex flex-col items-center">
+        {cards.map((_, index) => (
+          <div
+            key={index}
+            className={`relative w-64 h-40 bg-white rounded-2xl shadow-2xl transition-all duration-500 ease-in-out transform ${
+              expandedCard === index ? "scale-105 z-50" : "scale-100"
+            }`}
+            style={{
+              marginTop: index === 0 ? 0 : expandedCard === null ? -100 : 20,
+              zIndex: expandedCard === index ? 100 : cards.length - index,
+            }}
+            onClick={() => setExpandedCard(index)}
+          >
+            <div className="flex items-center justify-center h-full">
+              <h2 className="text-2xl font-bold text-gray-800">
+                Card {index + 1}
+              </h2>
+            </div>
+            {expandedCard === index && (
+              <div className="absolute top-2 right-2">
+                <button
+                  className="bg-red-500 text-white rounded-full p-2 shadow-md hover:bg-red-600 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setExpandedCard(null);
+                  }}
+                >
+                  X
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// export default StackCards;
+
+const AnimateBoxes = () => {
+  const [activeIndexes, setActiveIndexes] = useState([]);
+
+  useEffect(() => {
+    // Animate boxes one by one
+    [0, 1, 2, 3].forEach((i) => {
+      setTimeout(() => {
+        setActiveIndexes((prev) => [...prev, i]);
+      }, i * 300); // delay each box by 300ms
+    });
+  }, []);
+
+  return (
+    <div className="flex flex-wrap gap-4 p-10 relative">
+      {[0, 1, 2, 3].map((i) => (
+        <div
+          key={i}
+          className="w-24 h-24 bg-blue-500 rounded-xl shadow-lg transition-all duration-2000"
+          style={{
+            transform: activeIndexes.includes(i)
+              ? "translate(0, 0)"
+              : "translate(-100px, -100px)",
+            opacity: activeIndexes.includes(i) ? 1 : 0,
+          }}
+        />
+      ))}
+    </div>
+  );
+};

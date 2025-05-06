@@ -11,16 +11,19 @@ import CustomNotification from "@/components/web_views/CustomNotification";
 import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
 import FillBoxByDrag from "@/components/web_views/FillBoxByDrag";
-import Notifications from "@/components/web_views/Notifications";
 import RangeSlider from "@/components/web_views/dot_pattern/DotPattern";
 import { TwoBg } from "@/components/web_views/two_bg/TwoBg";
 import WebDialog from "@/components/web_views/webdialog/WebDialog";
-import { link } from "fs";
 
 export const dropDowns = [
   {
     name: "Home",
     link: "/",
+    childs: [],
+  },
+  {
+    name: "Projects",
+    link: "/projects",
     childs: [],
   },
   {
@@ -40,12 +43,10 @@ export const dropDowns = [
       { name: "Mobile Nav", link: "/ui/7", comp: CustomInput },
       { name: "Border Shape", link: "/ui/8", comp: BorderShape },
       { name: "Button Groups", link: "/ui/9", comp: Buttons },
-      { name: "Notifications", link: "/ui/10", comp: Notifications },
       { name: "Custom Notification", link: "/ui/11", comp: CustomNotification },
       { name: "FillBoxByDrag", link: "/ui/12", comp: FillBoxByDrag },
       { name: "Range Slider", link: "/ui/13", comp: RangeSlider },
       { name: "Two Bg", link: "/ui/14", comp: TwoBg },
-      
     ],
   },
   {
@@ -65,6 +66,6 @@ export const dropDowns = [
   },
   {
     name: "Cool Stuff",
-    childs: [{ name: "Expand Card", link: "/cool/1", comp: CardExpand },],
+    childs: [{ name: "Expand Card", link: "/cool/1", comp: CardExpand }],
   },
 ];

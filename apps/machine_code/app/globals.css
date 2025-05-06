@@ -3,12 +3,61 @@
 body {
   margin: 0;
   padding: 0;
-  height: 200vh;
+  height: 100vh;
 }
 
 * {
   box-sizing: border-box;
 }
+
+.plane {
+  position: absolute;
+}
+
+.plane1 {
+  top: 10%;
+  left: -50px;
+  animation: flyRight 12s linear infinite;
+}
+
+.plane2 {
+  bottom: 20%;
+  right: -50px;
+  animation: flyLeft 10s linear infinite;
+}
+
+.plane3 {
+  top: 50%;
+  left: -60px;
+  animation: flyRight 15s ease-in-out infinite;
+}
+
+.plane4 {
+  bottom: 40%;
+  right: -60px;
+  animation: flyLeft 14s ease-in-out infinite;
+}
+
+@keyframes flyRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes flyLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-120vw);
+  }
+}
+
+
+
 
 .check-box-group {
   display: flex;

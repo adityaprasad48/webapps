@@ -184,70 +184,32 @@ const CardExpand = () => {
   ];
 
   return (
-    <div className="wrapper">
-      <AnimateBoxes />
-      <StackCards />
-      <div className="header">
-        <h1>Card Expand Animation</h1>
-        <p>How to animate card expand opening</p>
+    <div>
+      
+      <div className="wrapper">
+        <AnimateBoxes />
+
+        <div className="header">
+          <h1>Card Expand Animation</h1>
+          <p>How to animate card expand opening</p>
+        </div>
+        <div className="cards">
+          {skills.map((skill, index) => (
+            <div key={index} className="card" data-type={skill.type}>
+              <h2>{skill.name}</h2>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="cards">
-        {skills.map((skill, index) => (
-          <div key={index} className="card" data-type={skill.type}>
-            <h2>{skill.name}</h2>
-          </div>
-        ))}
-      </div>
+
+      
     </div>
   );
 };
 
 export default CardExpand;
 
-const StackCards = () => {
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
-  const cards = Array.from({ length: 5 });
-
-  return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500">
-      <div className="flex flex-col items-center">
-        {cards.map((_, index) => (
-          <div
-            key={index}
-            className={`relative w-64 h-40 bg-white rounded-2xl shadow-2xl transition-all duration-500 ease-in-out transform ${
-              expandedCard === index ? "scale-105 z-50" : "scale-100"
-            }`}
-            style={{
-              marginTop: index === 0 ? 0 : expandedCard === null ? -100 : 20,
-              zIndex: expandedCard === index ? 100 : cards.length - index,
-            }}
-            onClick={() => setExpandedCard(index)}
-          >
-            <div className="flex items-center justify-center h-full">
-              <h2 className="text-2xl font-bold text-gray-800">
-                Card {index + 1}
-              </h2>
-            </div>
-            {expandedCard === index && (
-              <div className="absolute top-2 right-2">
-                <button
-                  className="bg-red-500 text-white rounded-full p-2 shadow-md hover:bg-red-600 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setExpandedCard(null);
-                  }}
-                >
-                  X
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 // export default StackCards;
 

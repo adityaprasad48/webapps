@@ -12,6 +12,7 @@ import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
 import FillBoxByDrag from "@/components/web_views/FillBoxByDrag";
 import RangeSlider from "@/components/web_views/dot_pattern/DotPattern";
+import StackCards from "@/components/web_views/stackcard/StackCards";
 import { TwoBg } from "@/components/web_views/two_bg/TwoBg";
 import WebDialog from "@/components/web_views/webdialog/WebDialog";
 
@@ -46,7 +47,8 @@ export const dropDowns = [
       { name: "Custom Notification", link: "/ui/11", comp: CustomNotification },
       { name: "FillBoxByDrag", link: "/ui/12", comp: FillBoxByDrag },
       { name: "Range Slider", link: "/ui/13", comp: RangeSlider },
-      { name: "Two Bg", link: "/ui/14", comp: TwoBg },
+      { name: "Two Bg", link: "/ui/14", comp: StackCards },
+      { name: "Stack Cards", link: "/ui/15", comp: StackCards },
     ],
   },
   {

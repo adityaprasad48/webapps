@@ -5,6 +5,14 @@ export default function Home() {
   return (
     <>
       <div className="relative w-full h-screen overflow-hidden bg-sky-100">
+        <h1>
+          <ul>
+            <li>Open in Practice Window</li>
+            <li>Notification Stack using top, left</li>
+            <li>convert notification to react js</li>
+            <li>scroll to box if box is last zoom out</li>
+          </ul>
+        </h1>
         {/* Plane 1 */}
         <PlaneIcon className="plane plane1 text-blue-500 h-20 w-20" />
         {/* Plane 2 */}

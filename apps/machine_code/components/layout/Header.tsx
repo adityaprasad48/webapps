@@ -12,8 +12,55 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Modal from "../mcode/modal/Modal";
+import { set } from "mongoose";
 
 const Header = ({ isOpen, setIsOpen: sidebarOpen }) => {
+  let content = null;
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalName, setModalName] = useState("");
+
+  const loginContent = () => {
+    return (
+      <div className="p-4">
+        <h2 className="text-lg font-bold">Login Web</h2>
+        <p>This is a sample modal content.</p>
+        <button
+          className="mt-4 w-full bg-purple-500 text-white px-4 py-2 rounded"
+          onClick={handleClose}
+        >
+          Close
+        </button>
+      </div>
+    );
+  };
+
+  const signupContent = () => {
+    return (
+      <div className="p-4">
+        <h2 className="text-lg font-bold">Sign Up Into Web</h2>
+        <p>This is a sample modal content.</p>
+        <button
+          className="mt-4 w-full bg-purple-500 text-white px-4 py-2 rounded"
+          onClick={handleClose}
+        >
+          Close
+        </button>
+      </div>
+    );
+  };
+
+  const handleOpenModal = (type: string) => {
+   setModalName(type);
+    setModalOpen(true);
+  };
+
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
+
   const [iconNum, setIconNum] = useState(0);
   const [modeOpen, setModeOpen] = useState(false);
 
@@ -109,10 +156,16 @@ const Header = ({ isOpen, setIsOpen: sidebarOpen }) => {
       </div>
 
       <div className="flex items-center gap-4 ml-auto">
-        <button className="bg-orange-400 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap">
+        <button
+          onClick={() => handleOpenModal("signup")}
+          className="bg-orange-400 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap cursor-pointer"
+        >
           Sign Up
         </button>
-        <button className="bg-gray-200 text-steal-400 px-4 py-2 rounded-lg text-sm whitespace-nowrap">
+        <button
+          onClick={() => handleOpenModal("login")}
+          className="bg-gray-200 text-steal-400 px-4 py-2 rounded-lg text-sm whitespace-nowrap cursor-pointer"
+        >
           Login
         </button>
 
@@ -188,6 +241,10 @@ const Header = ({ isOpen, setIsOpen: sidebarOpen }) => {
           )}
         </div>
       </div>
+
+      <Modal isOpen={modalOpen} onClose={handleClose}>
+        {modalName === "login" ? loginContent() : signupContent()}
+      </Modal>
     </header>
   );
 };

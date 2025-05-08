@@ -3,8 +3,6 @@ import { dropDowns } from "@/utils/header";
 import { use } from "chai";
 import {
   BotIcon,
-  CrosshairIcon,
-  HammerIcon,
   Menu,
   MenuSquareIcon,
   PiIcon,
@@ -16,7 +14,6 @@ import Modal from "../mcode/modal/Modal";
 import { set } from "mongoose";
 
 const Header = ({ isOpen, setIsOpen: sidebarOpen }) => {
-  let content = null;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalName, setModalName] = useState("");

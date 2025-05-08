@@ -13,9 +13,8 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 
-const SideBar = ({isOpen}) => {
+const SideBar = ({isOpen, setIsOpen}) => {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
-  const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
   const toggleDropdown = (index: number) => {
     setOpenIndexes(
@@ -65,6 +64,10 @@ const SideBar = ({isOpen}) => {
               {dd.childs.map((child, childIndex) => (
                 <div
                   key={childIndex}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setOpenIndexes([]);
+                  }}
                   className="flex items-center space-x-2 pl-8 py-1 text-gray-500 hover:text-gray-700"
                 >
                   <Link href={child.link} className="text-sm">

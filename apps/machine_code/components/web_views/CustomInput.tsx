@@ -19,7 +19,7 @@ const CustomInput = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <label className="custom-field">
         <input type="email" placeholder="&nbsp;" />
         <span className="placeholder">Enter Email</span>
@@ -41,7 +41,7 @@ const CustomInput = () => {
       <label className="custom-field three">
         <input type="password" placeholder="&nbsp;" />
         <span className="placeholder">Enter Password</span>
-        <span className="border"></span>
+        <span className="rect_border"></span>
       </label>
     </div>
   );

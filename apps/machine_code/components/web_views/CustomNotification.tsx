@@ -1,127 +1,97 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { toast, ToastContainer } from "./ToastContainer";
 
-const CustomNotification = () => {
-  useEffect(() => {
-    class Notification {
-      private container: HTMLDivElement;
-      stackGap = 15;
-      offsetGap = 25;
+export const NotificationContainer = () => {
+  const [queue, setQueue] = useState<[string, string, number][]>([]);
+  const [notifications, setNotifications] = useState<Record<string, any>>({});
 
-      constructor(pos = "top-right", parent = document.body) {
-        this.container = document.createElement("div");
-        this.container.className = `notification-container ${pos}`;
-        parent.appendChild(this.container);
-      }
+  const createNotificationMessageElement = (msg: string, pos: string) => {
+    return (
+      <div className="notification-message" key={msg}>
+        <span>{msg}</span>
+        <button
+          type="button"
+          className="close-btn"
+          onClick={() => {
+            const updatedNotifications = { ...notifications };
+            const notificationElement =
+              updatedNotifications[msg]?.notificationElement;
+            if (notificationElement) {
+              let sib =
+                notificationElement.nextElementSibling as HTMLElement | null;
+              let height = notificationElement.offsetHeight + 15;
 
-      private getPosition() {
-        const position = this.container.className.split(" ")[1];
-        switch (position) {
-          case "top-left":
-            return { top: "20px", left: "20px" };
-          case "top":
-            return { top: "20px", left: "50%", transform: "translateX(-50%)" };
-          case "top-right":
-            return { top: "20px", right: "20px" };
-          case "bottom-left":
-            return { bottom: "20px", left: "20px" };
-          case "bottom":
-            return {
-              bottom: "20px",
-              left: "50%",
-              transform: "translateX(-50%)",
-            };
-          case "bottom-right":
-            return { bottom: "20px", right: "20px" };
-          default:
-            return {};
-        }
-      }
+              while (sib) {
+                sib.style[pos] =
+                  parseInt(sib.style[pos] || "0", 10) - height + "px";
+                height = sib.offsetHeight + 15;
+                sib = sib.nextElementSibling as HTMLElement | null;
+              }
 
-      show(message: string, duration = 3000) {
-        let timer: any = null;
-        const notificationElement = this.createNotification(message);
-        this.container.insertAdjacentElement("afterbegin", notificationElement);
-
-        let space =
-          notificationElement.offsetHeight + (this.offsetGap + this.stackGap);
-        let sib = notificationElement.nextElementSibling;
-        while (sib) {
-          sib.style.top = space + "px";
-          space = space + (sib.offsetHeight + this.stackGap);
-          sib = sib.nextElementSibling;
-        }
-
-        // timer = setTimeout(() => {
-        //   notificationElement.remove();
-        //   clearTimeout(timer);
-        // }
-        // , duration);
-      }
-
-      createNotification(message: string) {
-        const box = document.createElement("div");
-        box.className = "notification-message shadow-md";
-        box.innerHTML = `<span>${message}</span><button class="close-btn">Close</button>`;
-        return box;
-      }
-
-      close(notificationElement: HTMLDivElement) {
-        notificationElement.remove();
-      }
-    }
-    const notification = new Notification("top-right");
-    const triggerButtons = document.querySelectorAll(".trigger-btn");
-    triggerButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const position = button.innerText.toLowerCase().replace(" ", "-");
-        notification.show(`Notification from ${position}`);
-      });
-    });
-  }, []);
-
-  //  create a html for with box already fill with white color and vertical line which you can drag and dragged portion will be filled with green color
-
-  return (
-    <>
-      {/* create a html for with box already fill with white color and vertical line which you can drag and dragged portion will be filled with green color */}
-
-      <div className="custom-notification-wrapper">
-        <div className="notification-triggers">
-          <button type="button" className="trigger-btn">
-            Top Left
-          </button>
-          <button type="button" className="trigger-btn">
-            Top
-          </button>
-          <button type="button" className="trigger-btn">
-            Top Right
-          </button>
-          <button type="button" className="trigger-btn">
-            Bottom Left
-          </button>
-          <button type="button" className="trigger-btn">
-            Bottom
-          </button>
-          <button type="button" className="trigger-btn">
-            Bottom Right
-          </button>
-        </div>
+              delete updatedNotifications[msg];
+              setNotifications(updatedNotifications);
+            }
+          }}
+        >
+          x
+        </button>
       </div>
-      <div className="notification-container">
-        <div className="notification-message shadow-md">
-          <span>
-            {" "}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorum
-          </span>
-          <button type="button" className="close-btn">
-            Close
-          </button>
-        </div>
-      </div>
-    </>
-  );
+    );
+  };
+
+  return <div className="notification-container top-left"></div>;
 };
 
-export default CustomNotification;
+export const CustomNotification = () => {
+  const [i, setI] = useState(0);
+
+  const addTop = () => {
+    toast(`Top Left Notification ${i}`, "top-left", {
+      icon: "🔔",
+      persistent: true,
+      duration: 3000,
+    });
+    setI((prev) => prev + 1);
+  };
+
+
+   const addBottom = () => {
+    toast(`Bottom Left Notification ${i}`, "bottom-left", {
+      icon: "🔔",
+      persistent: true,
+      duration: 3000,
+    });
+    setI((prev) => prev + 1);
+
+  };
+
+  return (
+    <div>
+      <div className="notification-triggers">
+        <button onClick={addTop} type="button" className="trigger-btn">
+          top left
+        </button>
+        <button onClick={addTop} type="button" className="trigger-btn">
+          top
+        </button>
+        <button onClick={addTop} type="button" className="trigger-btn">
+          top right
+        </button>
+        <button onClick={addBottom} type="button" className="trigger-btn">
+          bottom left
+        </button>
+        <button onClick={addBottom} type="button" className="trigger-btn">
+          bottom
+        </button>
+        <button onClick={addBottom} type="button" className="trigger-btn">
+          bottom right
+        </button>
+      </div>
+      <ToastContainer />
+      {/* <div className="notification-container top-left"></div>
+    <div className="notification-container top"></div> */}
+    </div>
+  );
+};

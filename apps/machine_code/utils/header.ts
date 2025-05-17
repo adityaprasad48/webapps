@@ -1,3 +1,4 @@
+import { CustomNotification } from '@/components/web_views/CustomNotification';
 import DragToFolder from "@/components/mcode/drag/DragToFolder";
 import FaceBuilder from "@/components/mcode/drag/FaceBuilder";
 import InventoryGrid from "@/components/mcode/drag/InventoryGrid";
@@ -7,7 +8,6 @@ import Buttons from "@/components/web_views/Buttons";
 import CardExpand from "@/components/web_views/CardExpand/CardExpand";
 import CssTooltip from "@/components/web_views/CssTooltip";
 import CustomInput from "@/components/web_views/CustomInput";
-import CustomNotification from "@/components/web_views/CustomNotification";
 import CustomSelect from "@/components/web_views/CustomSelect";
 import DropDown from "@/components/web_views/DropDown";
 import FillBoxByDrag from "@/components/web_views/FillBoxByDrag";
@@ -44,11 +44,11 @@ export const dropDowns = [
       { name: "Mobile Nav", link: "/ui/7", comp: CustomInput },
       { name: "Border Shape", link: "/ui/8", comp: BorderShape },
       { name: "Button Groups", link: "/ui/9", comp: Buttons },
-      { name: "Custom Notification", link: "/ui/11", comp: CustomNotification },
-      { name: "FillBoxByDrag", link: "/ui/12", comp: FillBoxByDrag },
-      { name: "Range Slider", link: "/ui/13", comp: RangeSlider },
-      { name: "Two Bg", link: "/ui/14", comp: StackCards },
-      { name: "Stack Cards", link: "/ui/15", comp: StackCards },
+      { name: "Custom Notification", link: "/ui/10", comp: CustomNotification },
+      { name: "FillBoxByDrag", link: "/ui/11", comp: FillBoxByDrag },
+      { name: "Range Slider", link: "/ui/12", comp: RangeSlider },
+      { name: "Two Bg", link: "/ui/13", comp: TwoBg },
+      { name: "Stack Cards", link: "/ui/14", comp: StackCards },
     ],
   },
   {

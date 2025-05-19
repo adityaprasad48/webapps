@@ -15,6 +15,7 @@ import RangeSlider from "@/components/web_views/dot_pattern/DotPattern";
 import StackCards from "@/components/web_views/stackcard/StackCards";
 import { TwoBg } from "@/components/web_views/two_bg/TwoBg";
 import WebDialog from "@/components/web_views/webdialog/WebDialog";
+import SliderCards from '@/components/web_views/slider/SliderCards';
 
 export const dropDowns = [
   {
@@ -49,6 +50,7 @@ export const dropDowns = [
       { name: "Range Slider", link: "/ui/12", comp: RangeSlider },
       { name: "Two Bg", link: "/ui/13", comp: TwoBg },
       { name: "Stack Cards", link: "/ui/14", comp: StackCards },
+      { name: "ScrollSnapCards", link: "/ui/15", comp: SliderCards },
     ],
   },
   {
